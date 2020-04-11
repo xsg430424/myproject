@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sfc.es.dao.ScheduleMapper">
+
+    <resultMap id="BaseResultMap" type="com.sfc.es.entity.po.Schedule" >
+        <result column="schedule_id" property="ScheduleId" />
+        <result column="create_by" property="createBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="schedule_time" property="scheduleTime" />
+        <result column="create_time" property="createTime" />
+        <result column="description" property="description" />
+        <result column="update_by" property="updateBy" />
+        <result column="schedule_name" property="scheduleName" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `schedule_id`,
+        `create_by`,
+        `update_time`,
+        `schedule_time`,
+        `create_time`,
+        `description`,
+        `update_by`,
+        `schedule_name`,
+        `status`
+    </sql>
+
+    <select id="findPageInfo" parameterType="com.sfc.es.entity.po.Schedule" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from schedule
+        <where>
+                    <if test="ScheduleId != null">
+            and schedule_id = #{ScheduleId}
+                    </if>
+                    <if test="createBy != null">
+            and create_by = #{createBy}
+                    </if>
+                    <if test="updateTime != null">
+            and update_time = #{updateTime}
+                    </if>
+                    <if test="scheduleTime != null">
+            and schedule_time = #{scheduleTime}
+                    </if>
+                    <if test="createTime != null">
+            and create_time = #{createTime}
+                    </if>
+                    <if test="description != null">
+            and description = #{description}
+                    </if>
+                    <if test="updateBy != null">
+            and update_by = #{updateBy}
+                    </if>
+                    <if test="scheduleName != null">
+            and schedule_name = #{scheduleName}
+                    </if>
+            and status = 1
+        </where>
+        order by id desc
+    </select>
+
+
+    <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from schedule
+        where id = #{id} and status= 1
+    </select>
+
+    <insert id="insert" parameterType="com.sfc.es.entity.po.Schedule" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into schedule (
+            `schedule_id`,
+            `create_by`,
+            `update_time`,
+            `schedule_time`,
+            `create_time`,
+            `description`,
+            `update_by`,
+            `schedule_name`,
+            `status`
+        )
+        VALUES(
+            #{ScheduleId},
+            #{createBy},
+            now(),
+            #{scheduleTime},
+            now(),
+            #{description},
+            #{updateBy},
+            #{scheduleName},
+            #{status}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.sfc.es.entity.po.Schedule">
+        update schedule
+        <set>
+        <if test="ScheduleId != null">
+                schedule_id = #{ScheduleId},
+        </if>
+        <if test="createBy != null">
+                create_by = #{createBy},
+        </if>
+        <if test="updateTime != null">
+        </if>
+        <if test="scheduleTime != null">
+                schedule_time = #{scheduleTime},
+        </if>
+        <if test="createTime != null">
+        </if>
+        <if test="description != null">
+                description = #{description},
+        </if>
+        <if test="updateBy != null">
+                update_by = #{updateBy},
+        </if>
+        <if test="scheduleName != null">
+                schedule_name = #{scheduleName},
+        </if>
+        <if test="status != null">
+                status = #{status},
+        </if>
+            update_time = now(),
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="insertBatch" keyColumn="id" keyProperty="id" parameterType="java.util.List" useGeneratedKeys="true">
+        insert into schedule (
+                    `schedule_id`,
+                    `create_by`,
+                    `update_time`,
+                    `schedule_time`,
+                    `create_time`,
+                    `description`,
+                    `update_by`,
+                    `schedule_name`,
+                    `status`
+            )
+            VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            ( 
+                    #{item.ScheduleId},
+                    #{item.createBy},
+                    #{item.updateTime},
+                    #{item.scheduleTime},
+                    #{item.createTime},
+                    #{item.description},
+                    #{item.updateBy},
+                    #{item.scheduleName},
+                    #{item.status}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="delete" parameterType="com.sfc.es.entity.po.Schedule">
+        update schedule set
+        <if test="updateBy != null">
+            update_by = #{updateBy},
+        </if>
+        status = 0,
+        update_time = now()
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+        </where>
+    </delete>
+</mapper>

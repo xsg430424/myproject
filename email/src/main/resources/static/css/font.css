@@ -1,0 +1,120 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*用于错误，失败，欠款等文字或数字*/
+.font_red_f{color:#f95a56 !important}
+
+/*用于成功提示*/
+.font_green_8{ color:#84ca34 !important}
+
+/*用于强调区域或高亮文字*/
+.font_orange{ color:#ff8420 !important}
+
+/*用于收益，上涨等文字或数字*/
+.font_red_e{ color:#e84a55 !important}
+
+/*用于下跌，亏损*/
+.font_green_1{ color:#16ac3e !important}
+
+/*用于下跌，亏损*/
+.font_blue{ color:#0074e1 !important}
+
+/*用于错误，失败，欠款等文字或数字*/
+.font_gray_3{ color:#383838 !important}
+
+/*用于错误，失败，欠款等文字或数字*/
+.font_gray_5{ color:#565656 !important}
+
+/*用于错误，失败，欠款等文字或数字*/
+.font_gray_9{ color:#929292 !important}
+
+/*用于错误，失败，欠款等文字或数字*/
+.font_white{ color:#ffffff !important}
+
+
+.color_a{color:#383838 !important}
+.color_b{color:#565656 !important}
+.color_c{color:#929292 !important}
+.color_d{color:#ffffff !important}
+
+.color_e{color:#d0d0d0 !important}
+.color_f{color:#E84A55 !important}
+.color_g{color:#5995ef !important}
+.color_h{color:#ff3633 !important}
+
+.color_i{color:#00c434 !important}
+.color_j{color:#ff8420 !important}
+.color_k{color:#feaa33 !important}
+.color_l{color:#ac9374 !important}
+
+.color_n{color:#7ed321 !important}
+.color_m{color:#f95a56 !important}
+.color_mm{color:#f95a56}
+
+.color_ccc{ color:#ccc !important}
+.color_red_E24{ color:#e2462b !important}
+
+.color_glod_1{ color:#ac9374 !important}
+
+
+/*漲跌顏色控制開始*/
+.stockUP{ background-color:#ff3633 !important;}
+.stockFall{ background-color:#00c434 !important;}
+.stockStop{ background-color:#929292 !important;}
+.stockFlat{ background-color:#565656 !important;}
+
+.stockUP_text{color:#ff3633 !important;}
+.stockFall_text{color:#00c434 !important;}
+.stockStop_text{color:#929292 !important;}
+.stockFlat_text{color:#565656 !important;}
+
+.iconStock_fall:before{ content:"";  width: .2133333333333333rem;  height: .32rem;  display:block;  position:absolute; bottom:.0533333333333333rem; right:0px; background: url(../images/2x/icon_drop@2x.png) no-repeat bottom;   background-size: contain;  }
+.iconStock_up:before{ content:""; width: .2133333333333333rem;  height: .32rem;  display:block;  position:absolute; bottom:.0533333333333333rem; right:0px;  background: url(../images/2x/icon_rise@2x.png) no-repeat bottom;  background-size: contain;  }
+
+
+
+/*漲跌顏色控制結束*/
+
+
+
+.bg_1{background:#99aaff}
+.bg_2{background:#6294ff}
+.bg_3{background:#56cae7}
+.bg_4{background:#f9727b}
+
+
+.fontsize30{ font-size:.80rem !important}
+.fontsize24{ font-size:.64rem !important}
+.fontsize22{ font-size:.5866666666666667rem !important}
+.fontsize20{ font-size:.5333333333333333rem !important}
+.fontsize18{ font-size:.48rem !important}
+.fontsize16{ font-size:.4266666666666667rem !important}
+.fontsize14{ font-size:.3733333333333333rem !important}
+.fontsize12{ font-size:.32rem !important}
+.fontsize11{ font-size:.2933333333333333rem !important}
+.fontsize10{ font-size:.2666666666666667rem !important}
+
+.fontWeight600{ font-weight:600;}
+.fontWeight{ font-weight: bold !important;}
+.fontNormal{ font-weight: normal;}
+.textLetter_uppercase{text-transform:uppercase; }
+
+.textEllipsis{text-overflow:ellipsis;white-space:nowrap; overflow: hidden;}
+.wordBreakAll{ word-break: break-all;}
+.textWordbreak{ word-break: break-word; word-wrap: break-word;}
+
+.textAlign_L{ text-align: left !important}
+.textAlign_C{ text-align: center !important}
+.textAlign_R{ text-align: right !important}
+.textAlign_j{ text-align:justify}
+
+.textindent{ text-indent:999px}
+
+.verticalMid{ vertical-align:middle}
+
+.zwfont{width:14px; display:inline-block;text-indent:9999px}
+
+
+
+/*文字单行超出*/
+.textOverFlow{overflow:hidden; text-overflow: ellipsis; white-space:nowrap;}

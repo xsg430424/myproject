@@ -1,0 +1,42 @@
+.floatLeft{
+	float:left;
+}
+.floatRight{
+	float:right;
+}
+.borderRight{
+border-left:1px #B0C4DE solid;
+}
+.c-index {
+    display: inline-block;
+    padding: 1px 0;
+    color: #fff;
+    width: 14px;
+    line-height: 100%;
+    font-size: 12px;
+    text-align: center;
+    background-color: #8eb9f5;
+}
+.c-index-hot, .c-index-hot1 {
+    background-color: #f54545;
+}
+.c-gap-icon-right-small {
+    margin-right: 5px;
+}
+.show {
+	display: inline-block;
+}
+.hide {
+	display: none;
+}
+.textEllipsis {
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+}
+.textAlignLeft{
+	text-align: left;
+}
+.textAlignRight{
+	text-align: right;
+}

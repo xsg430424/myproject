@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>肖哥哥的笔记本</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/common.css" />
+	<link rel="stylesheet" type="text/css" href="css/skybase.css" />
+	<link rel="stylesheet" type="text/css" href="css/font.css" />
+	<link rel="stylesheet" type="text/css" href="css/font_black.css" />
+	<link rel="stylesheet" type="text/css" href="css/mybook.css" />
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript">
+var notetype;
+var content='';
+
+$(function(){
+$('.item').bind('click',function() {
+    $(this).addClass('on').siblings().removeClass('on');
+	var id=$(this).attr("notetype");
+	if(id && id!=''){
+		notetype=id;
+		getdefaultnoteaction(notetype);
+	}
+	
+}); 
+
+$('#udpatebtn').bind('click',function() {
+	$(".note").attr("readonly",false);
+});
+$('#savebtn').bind('click',function() {	
+	savenoteaction();
+	$(".note").attr("readonly",true);
+});
+
+$('.item').eq(0).click();
+//alert(notetype);
+getdefaultnoteaction(1);
+});
+function getdefaultnoteaction(id){
+$(".note").val('');
+$.ajax({
+        type: "get", 
+		contentType:"application/json",
+        url: "http://106.52.22.118:8800/message/get/"+id,
+        success: function (data) {
+            if (data.code == 000000) {
+                console.log("获取成功");
+				content=data.data.content;
+				$(".note").val(content);
+            } else {
+                alert('获取失败');
+            }
+        },
+        error: function (data) {
+            alert("获取失败");
+        }
+});
+
+}
+
+
+function savenoteaction(){
+content=$(".note").val();
+$.ajax({
+        type: "put",
+		dataType : 'json',   
+		contentType:"application/json",
+		data:JSON.stringify({
+				type:notetype,
+				userId: 1,
+				id:notetype,
+				content:content
+			}),
+        url: "http://106.52.22.118:8800/message/update",
+        success: function (data) {
+            if (data.code == 000000) {
+                console.log("更新成功");
+            } else {
+                alert('更新失败');
+            }
+        },
+        error: function (data) {
+            alert("更新失败");
+        }
+    });
+}
+</script>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+<section>
+<div class="menu">
+		<ul class="nav">
+			<li class="item" notetype="1"><a href="#">账号</a></li>
+			<li class="item" notetype="2"><a href="#">linux</a></li>
+			<li class="item" notetype="3"><a href="#">ES</a></li>
+			<li class="item" id="udpatebtn"><a href="#">编辑</a></li>
+			<li class="item" id="savebtn"><a href="#">保存</a></li>
+		</ul> 
+</div>
+
+
+<div class="video">
+<textarea class="note" readonly="true">
+在w3school，你可以找到你所需要的所有的网站建设教程。
+</textarea>
+</div>
+
+
+</section>
+
+</body>
+</html>

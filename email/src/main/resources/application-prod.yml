@@ -1,0 +1,45 @@
+server:
+  port: 8800
+
+spring:
+  application:
+    name: my-project
+  datasource:
+      url: jdbc:mysql://${MYSQL_HOST:106.52.22.118}:${MYSQL_PORT:3306}/life?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&useSSL=false&serverTimezone=GMT%2B8
+      username: ${MYSQL_USERNAME:admin}
+      password: ${MYSQL_PASSWORD:Java123@}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  view:
+      prefix: /
+      suffix: .html
+
+  mail:
+    host: smtp.163.com
+    username: jxsjzzxsg@163.com
+    password: xsg1235813
+    default-encoding: UTF-8
+    # ssl 配置
+    port: 465
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+#        imap:
+#          ssl:
+#            socketFactory:
+#              fallback: false
+
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapperLocations: classpath:mapper/**/*Mapper.xml
+  typeAliasesPackage: com.sfc.es.dao
+
+mail:
+  fromMail:
+    addr: jxsjzzxsg@163.com
+
+
+

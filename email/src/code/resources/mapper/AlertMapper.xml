@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sfc.es.dao.AlertMapper">
+
+    <resultMap id="BaseResultMap" type="com.sfc.es.entity.po.Alert" >
+        <result column="alert_id" property="AlertId" />
+        <result column="alert_end_time" property="alertEndTime" />
+        <result column="create_by" property="createBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_time" property="createTime" />
+        <result column="alert_start_time" property="alertStartTime" />
+        <result column="description" property="description" />
+        <result column="update_by" property="updateBy" />
+        <result column="alert_name" property="alertName" />
+        <result column="alert_type" property="alertType" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `alert_id`,
+        `alert_end_time`,
+        `create_by`,
+        `update_time`,
+        `create_time`,
+        `alert_start_time`,
+        `description`,
+        `update_by`,
+        `alert_name`,
+        `alert_type`,
+        `status`
+    </sql>
+
+    <select id="findPageInfo" parameterType="com.sfc.es.entity.po.Alert" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from alert
+        <where>
+                    <if test="AlertId != null">
+            and alert_id = #{AlertId}
+                    </if>
+                    <if test="alertEndTime != null">
+            and alert_end_time = #{alertEndTime}
+                    </if>
+                    <if test="createBy != null">
+            and create_by = #{createBy}
+                    </if>
+                    <if test="updateTime != null">
+            and update_time = #{updateTime}
+                    </if>
+                    <if test="createTime != null">
+            and create_time = #{createTime}
+                    </if>
+                    <if test="alertStartTime != null">
+            and alert_start_time = #{alertStartTime}
+                    </if>
+                    <if test="description != null">
+            and description = #{description}
+                    </if>
+                    <if test="updateBy != null">
+            and update_by = #{updateBy}
+                    </if>
+                    <if test="alertName != null">
+            and alert_name = #{alertName}
+                    </if>
+                    <if test="alertType != null">
+            and alert_type = #{alertType}
+                    </if>
+            and status = 1
+        </where>
+        order by id desc
+    </select>
+
+
+    <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from alert
+        where id = #{id} and status= 1
+    </select>
+
+    <insert id="insert" parameterType="com.sfc.es.entity.po.Alert" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into alert (
+            `alert_id`,
+            `alert_end_time`,
+            `create_by`,
+            `update_time`,
+            `create_time`,
+            `alert_start_time`,
+            `description`,
+            `update_by`,
+            `alert_name`,
+            `alert_type`,
+            `status`
+        )
+        VALUES(
+            #{AlertId},
+            #{alertEndTime},
+            #{createBy},
+            now(),
+            now(),
+            #{alertStartTime},
+            #{description},
+            #{updateBy},
+            #{alertName},
+            #{alertType},
+            #{status}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.sfc.es.entity.po.Alert">
+        update alert
+        <set>
+        <if test="AlertId != null">
+                alert_id = #{AlertId},
+        </if>
+        <if test="alertEndTime != null">
+                alert_end_time = #{alertEndTime},
+        </if>
+        <if test="createBy != null">
+                create_by = #{createBy},
+        </if>
+        <if test="updateTime != null">
+        </if>
+        <if test="createTime != null">
+        </if>
+        <if test="alertStartTime != null">
+                alert_start_time = #{alertStartTime},
+        </if>
+        <if test="description != null">
+                description = #{description},
+        </if>
+        <if test="updateBy != null">
+                update_by = #{updateBy},
+        </if>
+        <if test="alertName != null">
+                alert_name = #{alertName},
+        </if>
+        <if test="alertType != null">
+                alert_type = #{alertType},
+        </if>
+        <if test="status != null">
+                status = #{status},
+        </if>
+            update_time = now(),
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="insertBatch" keyColumn="id" keyProperty="id" parameterType="java.util.List" useGeneratedKeys="true">
+        insert into alert (
+                    `alert_id`,
+                    `alert_end_time`,
+                    `create_by`,
+                    `update_time`,
+                    `create_time`,
+                    `alert_start_time`,
+                    `description`,
+                    `update_by`,
+                    `alert_name`,
+                    `alert_type`,
+                    `status`
+            )
+            VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            ( 
+                    #{item.AlertId},
+                    #{item.alertEndTime},
+                    #{item.createBy},
+                    #{item.updateTime},
+                    #{item.createTime},
+                    #{item.alertStartTime},
+                    #{item.description},
+                    #{item.updateBy},
+                    #{item.alertName},
+                    #{item.alertType},
+                    #{item.status}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="delete" parameterType="com.sfc.es.entity.po.Alert">
+        update alert set
+        <if test="updateBy != null">
+            update_by = #{updateBy},
+        </if>
+        status = 0,
+        update_time = now()
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+        </where>
+    </delete>
+</mapper>

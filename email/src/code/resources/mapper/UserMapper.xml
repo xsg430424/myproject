@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sfc.es.dao.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.sfc.es.entity.po.User" >
+        <result column="id" property="Id" />
+        <result column="birthday" property="birthday" />
+        <result column="create_time" property="createTime" />
+        <result column="sex" property="sex" />
+        <result column="description" property="description" />
+        <result column="telephone" property="telephone" />
+        <result column="password" property="password" />
+        <result column="update_time" property="updateTime" />
+        <result column="user_id" property="userId" />
+        <result column="role_id" property="roleId" />
+        <result column="mobile_phone" property="mobilePhone" />
+        <result column="last_login_datetime" property="lastLoginDatetime" />
+        <result column="certificatenum" property="certificatenum" />
+        <result column="name_cn" property="nameCn" />
+        <result column="email" property="email" />
+        <result column="username" property="username" />
+        <result column="name_en" property="nameEn" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `id`,
+        `birthday`,
+        `create_time`,
+        `sex`,
+        `description`,
+        `telephone`,
+        `password`,
+        `update_time`,
+        `user_id`,
+        `role_id`,
+        `mobile_phone`,
+        `last_login_datetime`,
+        `certificatenum`,
+        `name_cn`,
+        `email`,
+        `username`,
+        `name_en`,
+        `status`
+    </sql>
+
+    <select id="findPageInfo" parameterType="com.sfc.es.entity.po.User" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from user
+        <where>
+                    <if test="Id != null">
+            and id = #{Id}
+                    </if>
+                    <if test="birthday != null">
+            and birthday = #{birthday}
+                    </if>
+                    <if test="createTime != null">
+            and create_time = #{createTime}
+                    </if>
+                    <if test="sex != null">
+            and sex = #{sex}
+                    </if>
+                    <if test="description != null">
+            and description = #{description}
+                    </if>
+                    <if test="telephone != null">
+            and telephone = #{telephone}
+                    </if>
+                    <if test="password != null">
+            and password = #{password}
+                    </if>
+                    <if test="updateTime != null">
+            and update_time = #{updateTime}
+                    </if>
+                    <if test="userId != null">
+            and user_id = #{userId}
+                    </if>
+                    <if test="roleId != null">
+            and role_id = #{roleId}
+                    </if>
+                    <if test="mobilePhone != null">
+            and mobile_phone = #{mobilePhone}
+                    </if>
+                    <if test="lastLoginDatetime != null">
+            and last_login_datetime = #{lastLoginDatetime}
+                    </if>
+                    <if test="certificatenum != null">
+            and certificatenum = #{certificatenum}
+                    </if>
+                    <if test="nameCn != null">
+            and name_cn = #{nameCn}
+                    </if>
+                    <if test="email != null">
+            and email = #{email}
+                    </if>
+                    <if test="username != null">
+            and username = #{username}
+                    </if>
+                    <if test="nameEn != null">
+            and name_en = #{nameEn}
+                    </if>
+            and status = 1
+        </where>
+        order by id desc
+    </select>
+
+
+    <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from user
+        where id = #{id} and status= 1
+    </select>
+
+    <insert id="insert" parameterType="com.sfc.es.entity.po.User" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into user (
+            `id`,
+            `birthday`,
+            `create_time`,
+            `sex`,
+            `description`,
+            `telephone`,
+            `password`,
+            `update_time`,
+            `user_id`,
+            `role_id`,
+            `mobile_phone`,
+            `last_login_datetime`,
+            `certificatenum`,
+            `name_cn`,
+            `email`,
+            `username`,
+            `name_en`,
+            `status`
+        )
+        VALUES(
+            #{Id},
+            #{birthday},
+            now(),
+            #{sex},
+            #{description},
+            #{telephone},
+            #{password},
+            now(),
+            #{userId},
+            #{roleId},
+            #{mobilePhone},
+            #{lastLoginDatetime},
+            #{certificatenum},
+            #{nameCn},
+            #{email},
+            #{username},
+            #{nameEn},
+            #{status}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.sfc.es.entity.po.User">
+        update user
+        <set>
+        <if test="Id != null">
+        </if>
+        <if test="birthday != null">
+                birthday = #{birthday},
+        </if>
+        <if test="createTime != null">
+        </if>
+        <if test="sex != null">
+                sex = #{sex},
+        </if>
+        <if test="description != null">
+                description = #{description},
+        </if>
+        <if test="telephone != null">
+                telephone = #{telephone},
+        </if>
+        <if test="password != null">
+                password = #{password},
+        </if>
+        <if test="updateTime != null">
+        </if>
+        <if test="userId != null">
+                user_id = #{userId},
+        </if>
+        <if test="roleId != null">
+                role_id = #{roleId},
+        </if>
+        <if test="mobilePhone != null">
+                mobile_phone = #{mobilePhone},
+        </if>
+        <if test="lastLoginDatetime != null">
+                last_login_datetime = #{lastLoginDatetime},
+        </if>
+        <if test="certificatenum != null">
+                certificatenum = #{certificatenum},
+        </if>
+        <if test="nameCn != null">
+                name_cn = #{nameCn},
+        </if>
+        <if test="email != null">
+                email = #{email},
+        </if>
+        <if test="username != null">
+                username = #{username},
+        </if>
+        <if test="nameEn != null">
+                name_en = #{nameEn},
+        </if>
+        <if test="status != null">
+                status = #{status},
+        </if>
+            update_time = now(),
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="insertBatch" keyColumn="id" keyProperty="id" parameterType="java.util.List" useGeneratedKeys="true">
+        insert into user (
+                    `id`,
+                    `birthday`,
+                    `create_time`,
+                    `sex`,
+                    `description`,
+                    `telephone`,
+                    `password`,
+                    `update_time`,
+                    `user_id`,
+                    `role_id`,
+                    `mobile_phone`,
+                    `last_login_datetime`,
+                    `certificatenum`,
+                    `name_cn`,
+                    `email`,
+                    `username`,
+                    `name_en`,
+                    `status`
+            )
+            VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            ( 
+                    #{item.Id},
+                    #{item.birthday},
+                    #{item.createTime},
+                    #{item.sex},
+                    #{item.description},
+                    #{item.telephone},
+                    #{item.password},
+                    #{item.updateTime},
+                    #{item.userId},
+                    #{item.roleId},
+                    #{item.mobilePhone},
+                    #{item.lastLoginDatetime},
+                    #{item.certificatenum},
+                    #{item.nameCn},
+                    #{item.email},
+                    #{item.username},
+                    #{item.nameEn},
+                    #{item.status}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="delete" parameterType="com.sfc.es.entity.po.User">
+        update user set
+        <if test="updateBy != null">
+            update_by = #{updateBy},
+        </if>
+        status = 0,
+        update_time = now()
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+        </where>
+    </delete>
+</mapper>

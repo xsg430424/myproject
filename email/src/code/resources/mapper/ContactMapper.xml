@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sfc.es.dao.ContactMapper">
+
+    <resultMap id="BaseResultMap" type="com.sfc.es.entity.po.Contact" >
+        <result column="contact_id" property="ContactId" />
+        <result column="birthday" property="birthday" />
+        <result column="address" property="address" />
+        <result column="create_time" property="createTime" />
+        <result column="sex" property="sex" />
+        <result column="description" property="description" />
+        <result column="telephone" property="telephone" />
+        <result column="type" property="type" />
+        <result column="create_by" property="createBy" />
+        <result column="update_time" property="updateTime" />
+        <result column="user_id" property="userId" />
+        <result column="mobile_phone" property="mobilePhone" />
+        <result column="nickname" property="nickname" />
+        <result column="fullname" property="fullname" />
+        <result column="appellation" property="appellation" />
+        <result column="certificatenum" property="certificatenum" />
+        <result column="update_by" property="updateBy" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `contact_id`,
+        `birthday`,
+        `address`,
+        `create_time`,
+        `sex`,
+        `description`,
+        `telephone`,
+        `type`,
+        `create_by`,
+        `update_time`,
+        `user_id`,
+        `mobile_phone`,
+        `nickname`,
+        `fullname`,
+        `appellation`,
+        `certificatenum`,
+        `update_by`,
+        `status`
+    </sql>
+
+    <select id="findPageInfo" parameterType="com.sfc.es.entity.po.Contact" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from contact
+        <where>
+                    <if test="ContactId != null">
+            and contact_id = #{ContactId}
+                    </if>
+                    <if test="birthday != null">
+            and birthday = #{birthday}
+                    </if>
+                    <if test="address != null">
+            and address = #{address}
+                    </if>
+                    <if test="createTime != null">
+            and create_time = #{createTime}
+                    </if>
+                    <if test="sex != null">
+            and sex = #{sex}
+                    </if>
+                    <if test="description != null">
+            and description = #{description}
+                    </if>
+                    <if test="telephone != null">
+            and telephone = #{telephone}
+                    </if>
+                    <if test="type != null">
+            and type = #{type}
+                    </if>
+                    <if test="createBy != null">
+            and create_by = #{createBy}
+                    </if>
+                    <if test="updateTime != null">
+            and update_time = #{updateTime}
+                    </if>
+                    <if test="userId != null">
+            and user_id = #{userId}
+                    </if>
+                    <if test="mobilePhone != null">
+            and mobile_phone = #{mobilePhone}
+                    </if>
+                    <if test="nickname != null">
+            and nickname = #{nickname}
+                    </if>
+                    <if test="fullname != null">
+            and fullname = #{fullname}
+                    </if>
+                    <if test="appellation != null">
+            and appellation = #{appellation}
+                    </if>
+                    <if test="certificatenum != null">
+            and certificatenum = #{certificatenum}
+                    </if>
+                    <if test="updateBy != null">
+            and update_by = #{updateBy}
+                    </if>
+            and status = 1
+        </where>
+        order by id desc
+    </select>
+
+
+    <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from contact
+        where id = #{id} and status= 1
+    </select>
+
+    <insert id="insert" parameterType="com.sfc.es.entity.po.Contact" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into contact (
+            `contact_id`,
+            `birthday`,
+            `address`,
+            `create_time`,
+            `sex`,
+            `description`,
+            `telephone`,
+            `type`,
+            `create_by`,
+            `update_time`,
+            `user_id`,
+            `mobile_phone`,
+            `nickname`,
+            `fullname`,
+            `appellation`,
+            `certificatenum`,
+            `update_by`,
+            `status`
+        )
+        VALUES(
+            #{ContactId},
+            #{birthday},
+            #{address},
+            now(),
+            #{sex},
+            #{description},
+            #{telephone},
+            #{type},
+            #{createBy},
+            now(),
+            #{userId},
+            #{mobilePhone},
+            #{nickname},
+            #{fullname},
+            #{appellation},
+            #{certificatenum},
+            #{updateBy},
+            #{status}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.sfc.es.entity.po.Contact">
+        update contact
+        <set>
+        <if test="ContactId != null">
+                contact_id = #{ContactId},
+        </if>
+        <if test="birthday != null">
+                birthday = #{birthday},
+        </if>
+        <if test="address != null">
+                address = #{address},
+        </if>
+        <if test="createTime != null">
+        </if>
+        <if test="sex != null">
+                sex = #{sex},
+        </if>
+        <if test="description != null">
+                description = #{description},
+        </if>
+        <if test="telephone != null">
+                telephone = #{telephone},
+        </if>
+        <if test="type != null">
+                type = #{type},
+        </if>
+        <if test="createBy != null">
+                create_by = #{createBy},
+        </if>
+        <if test="updateTime != null">
+        </if>
+        <if test="userId != null">
+                user_id = #{userId},
+        </if>
+        <if test="mobilePhone != null">
+                mobile_phone = #{mobilePhone},
+        </if>
+        <if test="nickname != null">
+                nickname = #{nickname},
+        </if>
+        <if test="fullname != null">
+                fullname = #{fullname},
+        </if>
+        <if test="appellation != null">
+                appellation = #{appellation},
+        </if>
+        <if test="certificatenum != null">
+                certificatenum = #{certificatenum},
+        </if>
+        <if test="updateBy != null">
+                update_by = #{updateBy},
+        </if>
+        <if test="status != null">
+                status = #{status},
+        </if>
+            update_time = now(),
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="insertBatch" keyColumn="id" keyProperty="id" parameterType="java.util.List" useGeneratedKeys="true">
+        insert into contact (
+                    `contact_id`,
+                    `birthday`,
+                    `address`,
+                    `create_time`,
+                    `sex`,
+                    `description`,
+                    `telephone`,
+                    `type`,
+                    `create_by`,
+                    `update_time`,
+                    `user_id`,
+                    `mobile_phone`,
+                    `nickname`,
+                    `fullname`,
+                    `appellation`,
+                    `certificatenum`,
+                    `update_by`,
+                    `status`
+            )
+            VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            ( 
+                    #{item.ContactId},
+                    #{item.birthday},
+                    #{item.address},
+                    #{item.createTime},
+                    #{item.sex},
+                    #{item.description},
+                    #{item.telephone},
+                    #{item.type},
+                    #{item.createBy},
+                    #{item.updateTime},
+                    #{item.userId},
+                    #{item.mobilePhone},
+                    #{item.nickname},
+                    #{item.fullname},
+                    #{item.appellation},
+                    #{item.certificatenum},
+                    #{item.updateBy},
+                    #{item.status}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="delete" parameterType="com.sfc.es.entity.po.Contact">
+        update contact set
+        <if test="updateBy != null">
+            update_by = #{updateBy},
+        </if>
+        status = 0,
+        update_time = now()
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+        </where>
+    </delete>
+</mapper>

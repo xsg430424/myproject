@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sfc.es.dao.AccountMapper">
+
+    <resultMap id="BaseResultMap" type="com.sfc.es.entity.po.Account" >
+        <result column="account_id" property="AccountId" />
+        <result column="create_time" property="createTime" />
+        <result column="siteName" property="siteName" />
+        <result column="description" property="description" />
+        <result column="type" property="type" />
+        <result column="url" property="url" />
+        <result column="create_by" property="createBy" />
+        <result column="password" property="password" />
+        <result column="update_time" property="updateTime" />
+        <result column="user_id" property="userId" />
+        <result column="update_by" property="updateBy" />
+        <result column="username" property="username" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `account_id`,
+        `create_time`,
+        `siteName`,
+        `description`,
+        `type`,
+        `url`,
+        `create_by`,
+        `password`,
+        `update_time`,
+        `user_id`,
+        `update_by`,
+        `username`,
+        `status`
+    </sql>
+
+    <select id="findPageInfo" parameterType="com.sfc.es.entity.po.Account" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from account
+        <where>
+                    <if test="AccountId != null">
+            and account_id = #{AccountId}
+                    </if>
+                    <if test="createTime != null">
+            and create_time = #{createTime}
+                    </if>
+                    <if test="siteName != null">
+            and siteName = #{siteName}
+                    </if>
+                    <if test="description != null">
+            and description = #{description}
+                    </if>
+                    <if test="type != null">
+            and type = #{type}
+                    </if>
+                    <if test="url != null">
+            and url = #{url}
+                    </if>
+                    <if test="createBy != null">
+            and create_by = #{createBy}
+                    </if>
+                    <if test="password != null">
+            and password = #{password}
+                    </if>
+                    <if test="updateTime != null">
+            and update_time = #{updateTime}
+                    </if>
+                    <if test="userId != null">
+            and user_id = #{userId}
+                    </if>
+                    <if test="updateBy != null">
+            and update_by = #{updateBy}
+                    </if>
+                    <if test="username != null">
+            and username = #{username}
+                    </if>
+            and status = 1
+        </where>
+        order by id desc
+    </select>
+
+
+    <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from account
+        where id = #{id} and status= 1
+    </select>
+
+    <insert id="insert" parameterType="com.sfc.es.entity.po.Account" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into account (
+            `account_id`,
+            `create_time`,
+            `siteName`,
+            `description`,
+            `type`,
+            `url`,
+            `create_by`,
+            `password`,
+            `update_time`,
+            `user_id`,
+            `update_by`,
+            `username`,
+            `status`
+        )
+        VALUES(
+            #{AccountId},
+            now(),
+            #{siteName},
+            #{description},
+            #{type},
+            #{url},
+            #{createBy},
+            #{password},
+            now(),
+            #{userId},
+            #{updateBy},
+            #{username},
+            #{status}
+        )
+    </insert>
+
+    <update id="update" parameterType="com.sfc.es.entity.po.Account">
+        update account
+        <set>
+        <if test="AccountId != null">
+                account_id = #{AccountId},
+        </if>
+        <if test="createTime != null">
+        </if>
+        <if test="siteName != null">
+                siteName = #{siteName},
+        </if>
+        <if test="description != null">
+                description = #{description},
+        </if>
+        <if test="type != null">
+                type = #{type},
+        </if>
+        <if test="url != null">
+                url = #{url},
+        </if>
+        <if test="createBy != null">
+                create_by = #{createBy},
+        </if>
+        <if test="password != null">
+                password = #{password},
+        </if>
+        <if test="updateTime != null">
+        </if>
+        <if test="userId != null">
+                user_id = #{userId},
+        </if>
+        <if test="updateBy != null">
+                update_by = #{updateBy},
+        </if>
+        <if test="username != null">
+                username = #{username},
+        </if>
+        <if test="status != null">
+                status = #{status},
+        </if>
+            update_time = now(),
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="insertBatch" keyColumn="id" keyProperty="id" parameterType="java.util.List" useGeneratedKeys="true">
+        insert into account (
+                    `account_id`,
+                    `create_time`,
+                    `siteName`,
+                    `description`,
+                    `type`,
+                    `url`,
+                    `create_by`,
+                    `password`,
+                    `update_time`,
+                    `user_id`,
+                    `update_by`,
+                    `username`,
+                    `status`
+            )
+            VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            ( 
+                    #{item.AccountId},
+                    #{item.createTime},
+                    #{item.siteName},
+                    #{item.description},
+                    #{item.type},
+                    #{item.url},
+                    #{item.createBy},
+                    #{item.password},
+                    #{item.updateTime},
+                    #{item.userId},
+                    #{item.updateBy},
+                    #{item.username},
+                    #{item.status}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="delete" parameterType="com.sfc.es.entity.po.Account">
+        update account set
+        <if test="updateBy != null">
+            update_by = #{updateBy},
+        </if>
+        status = 0,
+        update_time = now()
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+        </where>
+    </delete>
+</mapper>
