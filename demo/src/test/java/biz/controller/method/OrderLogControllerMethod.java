@@ -1,7 +1,7 @@
 package biz.controller.method;
 
 import biz.controller.utils.HttpHelper;
-import com.jinjue.vo.response.OrderLogQueryVo;
+import com.jinjue.demo.vo.response.OrderLogQueryVo;
 import org.springframework.http.HttpMethod;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;

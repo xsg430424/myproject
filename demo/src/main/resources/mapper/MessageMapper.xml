@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sfc.es.dao.MessageMapper">
+<mapper namespace="com.jinjue.demo.dao.MessageMapper">
 
-    <resultMap id="BaseResultMap" type="com.jinjue.po.Message" >
+    <resultMap id="BaseResultMap" type="com.jinjue.demo.po.Message" >
         <result column="id" property="id" />
         <result column="user_id" property="userId" />
         <result column="title" property="title" />
@@ -26,7 +26,7 @@
         `update_time`
     </sql>
 
-    <select id="findPageInfo" parameterType="com.jinjue.po.Message" resultMap="BaseResultMap">
+    <select id="findPageInfo" parameterType="com.jinjue.demo.po.Message" resultMap="BaseResultMap">
         select <include refid="Base_Column_List" />
         from message
         <where>
@@ -66,7 +66,7 @@
         where id = #{id} and status= 1
     </select>
 
-    <insert id="insert" parameterType="com.jinjue.po.Message" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+    <insert id="insert" parameterType="com.jinjue.demo.po.Message" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
         insert into message (
         `id`,
         `user_id`,
@@ -91,7 +91,7 @@
         )
     </insert>
 
-    <update id="update" parameterType="com.jinjue.po.Message">
+    <update id="update" parameterType="com.jinjue.demo.po.Message">
         update message
         <set>
             <if test="id != null">
@@ -151,7 +151,7 @@
         </foreach>
     </insert>
 
-    <delete id="delete" parameterType="com.jinjue.po.Message">
+    <delete id="delete" parameterType="com.jinjue.demo.po.Message">
         update message set
         <if test="updateBy != null">
             update_by = #{updateBy},

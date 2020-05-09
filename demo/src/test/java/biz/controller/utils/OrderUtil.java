@@ -1,6 +1,6 @@
 package biz.controller.utils;
 
-import com.jinjue.vo.response.OrderLogVo;
+import com.jinjue.demo.vo.response.OrderLogVo;
 import org.junit.Assert;
 
 public class OrderUtil {
