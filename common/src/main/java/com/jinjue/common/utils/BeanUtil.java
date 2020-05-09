@@ -1,6 +1,7 @@
-package com.jinjue.demo.utils;
+package com.jinjue.common.utils;
 
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.BeanUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package com.jinjue.demo.exception;
+package com.jinjue.common.exception;
 
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

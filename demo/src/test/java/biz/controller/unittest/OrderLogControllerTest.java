@@ -6,8 +6,8 @@ import biz.controller.utils.OrderUtil;
 import biz.controller.utils.TestUtil;
 import com.alibaba.fastjson.TypeReference;
 import com.jinjue.demo.DemoApplication;
-import com.jinjue.demo.entity.OrderLogQueryVo;
-import com.jinjue.demo.entity.OrderLogVo;
+import com.jinjue.vo.response.OrderLogQueryVo;
+import com.jinjue.vo.response.OrderLogVo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -57,7 +57,7 @@ public class OrderLogControllerTest {
     public void testQuery() throws Exception {
         OrderLogQueryVo orderLogQueryVo=new OrderLogQueryVo();
         orderLogQueryVo.setOrderId(TestUtil.ORDER_ID);
-        MockHttpServletResponse response=orderLogControllerMethod.query(orderLogQueryVo);
+        MockHttpServletResponse response=orderLogControllerMethod.query();
         Assert.assertEquals(HttpStatus.OK.value(),response.getStatus());
         List<OrderLogVo> orderLogVos = TestUtil.checkAndGet(response,new TypeReference<List<OrderLogVo>>(){});
         Assert.assertEquals(orderLogVos.size(),1);
@@ -69,7 +69,7 @@ public class OrderLogControllerTest {
     public void testQueryEmpty() throws Exception {
         OrderLogQueryVo orderLogQueryVo=new OrderLogQueryVo();
         orderLogQueryVo.setOrderId(null);
-        MockHttpServletResponse response=orderLogControllerMethod.query(orderLogQueryVo);
+        MockHttpServletResponse response=orderLogControllerMethod.query();
         Assert.assertEquals(HttpStatus.BAD_REQUEST.value(),response.getStatus());
         Assert.assertTrue(response.getContentAsString().contains("订单ID不能为空"));
     }

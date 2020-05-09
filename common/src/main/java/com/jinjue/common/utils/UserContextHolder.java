@@ -1,4 +1,4 @@
-package com.jinjue.demo.utils;
+package com.jinjue.common.utils;
 
 import com.google.common.collect.Maps;
 

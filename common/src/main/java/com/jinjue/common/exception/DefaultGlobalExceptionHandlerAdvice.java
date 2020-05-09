@@ -1,8 +1,7 @@
-package com.jinjue.demo.exception;
+package com.jinjue.common.exception;
 
-import com.sfc.es.entity.vo.Result;
-import com.sfc.es.enums.Lang;
-import com.sfc.es.utils.ContextUtil;
+import com.jinjue.common.entity.Result;
+import com.jinjue.common.utils.ContextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -69,9 +68,9 @@ public class DefaultGlobalExceptionHandlerAdvice {
             //自定义的错误提示
             if (split.length > 1) {
                 String language = ContextUtil.getLanguage(ContextUtil.getRequest());
-                if (Lang.zh.name().equals(language)) {
+                if (com.jinjue.demo.enums.Lang.zh.name().equals(language)) {
                     message = split[0];
-                } else if (Lang.en.name().equals(language)) {
+                } else if (com.jinjue.demo.enums.Lang.en.name().equals(language)) {
                     message = split[1];
                 } else {
                     message = split[0];

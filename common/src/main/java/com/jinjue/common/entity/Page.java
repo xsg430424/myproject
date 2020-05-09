@@ -1,4 +1,4 @@
-package com.jinjue.demo.entity;
+package com.jinjue.common.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

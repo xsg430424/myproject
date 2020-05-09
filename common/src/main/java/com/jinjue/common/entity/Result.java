@@ -1,10 +1,10 @@
-package com.jinjue.demo.entity;
+package com.jinjue.common.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.sfc.es.exception.BaseException;
-import com.sfc.es.exception.ErrorType;
-import com.sfc.es.exception.SystemErrorType;
+import com.jinjue.common.exception.BaseException;
+import com.jinjue.common.exception.ErrorType;
+import com.jinjue.common.exception.SystemErrorType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;

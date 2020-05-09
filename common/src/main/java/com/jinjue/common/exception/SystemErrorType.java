@@ -1,8 +1,5 @@
-package com.jinjue.demo.exception;
+package com.jinjue.common.exception;
 
-
-import com.sfc.es.enums.Lang;
-import com.sfc.es.utils.ContextUtil;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 
@@ -90,10 +87,10 @@ public enum SystemErrorType implements ErrorType {
      */
     public String getMessage() {
         try {
-            String language = ContextUtil.getLanguage(ContextUtil.getRequest());
-            if (Lang.zh.name().equals(language)) {
+            String language = com.jinjue.demo.utils.ContextUtil.getLanguage(com.jinjue.demo.utils.ContextUtil.getRequest());
+            if (com.jinjue.demo.enums.Lang.zh.name().equals(language)) {
                 return cnEessage;
-            } else if (Lang.en.name().equals(language)) {
+            } else if (com.jinjue.demo.enums.Lang.en.name().equals(language)) {
                 return enEessage;
             }
         } catch (Exception e) {

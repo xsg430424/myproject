@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sfc.es.dao.MessageMapper">
+
+    <resultMap id="BaseResultMap" type="com.jinjue.po.Message" >
+        <result column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <result column="type" property="type" />
+        <result column="status" property="status" />
+        <result column="description" property="description" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        `id`,
+        `user_id`,
+        `title`,
+        `content`,
+        `type`,
+        `status`,
+        `description`,
+        `create_time`,
+        `update_time`
+    </sql>
+
+    <select id="findPageInfo" parameterType="com.jinjue.po.Message" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from message
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="title != null">
+                and title = #{title}
+            </if>
+            <if test="content != null">
+                and content = #{content}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="description != null">
+                and description = #{description}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            and status = 1
+        </where>
+        order by id desc
+    </select>
+
+
+    <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List" />
+        from message
+        where id = #{id} and status= 1
+    </select>
+
+    <insert id="insert" parameterType="com.jinjue.po.Message" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into message (
+        `id`,
+        `user_id`,
+        `title`,
+        `content`,
+        `type`,
+        `status`,
+        `description`,
+        `create_time`,
+        `update_time`
+        )
+        VALUES(
+        #{id},
+        #{userId},
+        #{title},
+        #{content},
+        #{type},
+        #{status},
+        #{description},
+        now(),
+        now()
+        )
+    </insert>
+
+    <update id="update" parameterType="com.jinjue.po.Message">
+        update message
+        <set>
+            <if test="id != null">
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="createTime != null">
+            </if>
+            <if test="updateTime != null">
+            </if>
+            update_time = now(),
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="insertBatch" keyColumn="id" keyProperty="id" parameterType="java.util.List" useGeneratedKeys="true">
+        insert into message (
+        `id`,
+        `user_id`,
+        `title`,
+        `content`,
+        `type`,
+        `status`,
+        `description`,
+        `create_time`,
+        `update_time`
+        )
+        VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            (
+            #{item.id},
+            #{item.userId},
+            #{item.title},
+            #{item.content},
+            #{item.type},
+            #{item.status},
+            #{item.description},
+            #{item.createTime},
+            #{item.updateTime}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="delete" parameterType="com.jinjue.po.Message">
+        update message set
+        <if test="updateBy != null">
+            update_by = #{updateBy},
+        </if>
+        status = 0,
+        update_time = now()
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+        </where>
+    </delete>
+</mapper>
