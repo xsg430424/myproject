@@ -16,7 +16,8 @@ spring:
   mail:
     host: smtp.163.com
     username: jxsjzzxsg@163.com
-    password: xsg1235813
+#    password: xsg1235813
+    password: NOUSQXEOVVQKFHDQ #授权码
     default-encoding: UTF-8
     # ssl 配置
     port: 465
@@ -35,7 +36,7 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
   mapperLocations: classpath:mapper/**/*Mapper.xml
-  typeAliasesPackage: com.sfc.es.dao
+  typeAliasesPackage: com.jinjue.demo.dao
 
 mail:
   fromMail:

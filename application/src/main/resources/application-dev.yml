@@ -5,7 +5,8 @@ spring:
   application:
     name: my-project
   datasource:
-      url: jdbc:mysql://${MYSQL_HOST:192.168.96.129}:${MYSQL_PORT:3306}/life?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&useSSL=false&serverTimezone=GMT%2B8
+#      url: jdbc:mysql://${MYSQL_HOST:192.168.96.129}:${MYSQL_PORT:3306}/life?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&useSSL=false&serverTimezone=GMT%2B8
+      url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/myproject?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&useSSL=false&serverTimezone=GMT%2B8
       username: ${MYSQL_USERNAME:root}
       password: ${MYSQL_PASSWORD:123456}
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -16,7 +17,8 @@ spring:
   mail:
     host: smtp.163.com
     username: jxsjzzxsg@163.com
-    password: xsg1235813
+#    password: xsg1235813
+    password: NOUSQXEOVVQKFHDQ #授权码
     default-encoding: UTF-8
 
 mybatis:

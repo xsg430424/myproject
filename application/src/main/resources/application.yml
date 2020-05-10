@@ -4,6 +4,6 @@ eureka:
     fetch-registry: false
 spring:
   profiles:
-#    active: dev
+    active: dev
 #    active: test
-    active: prod
+#    active: prod
