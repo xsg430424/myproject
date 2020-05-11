@@ -1,4 +1,4 @@
-package com.jinjue.demo.config;
+package com.jinjue.demo;
 
 import com.jinjue.demo.common.config.DefaultCorsFilter;
 import org.springframework.http.HttpMethod;

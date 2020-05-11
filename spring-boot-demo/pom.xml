@@ -9,11 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>demo</artifactId>
+    <artifactId>spring-boot-demo</artifactId>
     <packaging>pom</packaging>
 
     <modules>
         <module>jpa-demo</module>
+        <module>druid-demo</module>
     </modules>
 
 
