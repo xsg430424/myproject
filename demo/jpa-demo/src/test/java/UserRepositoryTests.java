@@ -19,7 +19,7 @@ public class UserRepositoryTests {
     private UserRepository userRepository;
 	@Test
 	public void testfindUserByUserName() {
-		String username="aa";
+		String username="a";
 		User user=userRepository.findUserByUserName(username);
 		System.out.println(user);
 	}
