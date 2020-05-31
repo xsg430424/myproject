@@ -15,6 +15,7 @@
     <modules>
         <module>jpa-demo</module>
         <module>druid-demo</module>
+        <module>excel-demo</module>
     </modules>
 
 
